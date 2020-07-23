@@ -1,3 +1,4 @@
+import { CanDeactivateGuard } from "./servers/edit-server/can-deactivate-guard.service";
 import { AuthGuard } from "./auth-guard.service";
 import { NgModule } from "@angular/core";
 import { HomeComponent } from "./home/home.component";
@@ -24,7 +25,11 @@ const appRoutes: Routes = [
     component: ServersComponent,
     children: [
       { path: ":id", component: ServerComponent },
-      { path: ":id/edit", component: EditServerComponent },
+      {
+        path: ":id/edit",
+        component: EditServerComponent,
+        canDeactivate: [CanDeactivateGuard],
+      },
     ],
   },
   { path: "not-found", component: PageNotFoundComponent },
